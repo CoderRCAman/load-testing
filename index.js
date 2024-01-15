@@ -21,6 +21,7 @@ app.get("/api/fake-users", (req, res) => {
 
 app.get("/api/spam", (req, res) => {
   const { times } = req.query;
+
   for (let i = 0; i < +times; i++) {
     fetch("http://128.199.17.161/api/fake-users", {
       method: "GET",
@@ -31,4 +32,7 @@ app.get("/api/spam", (req, res) => {
       .catch((err) => console.log(err));
   }
   return res.send({ success: true });
+});
+app.get("/api/crash", (req, res) => {
+  process.exit();
 });
