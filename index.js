@@ -1,12 +1,15 @@
 const fastify = require("fastify");
 const { faker } = require("@faker-js/faker");
+require("dotenv").config();
 const app = fastify({
   logger: true,
 });
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+const ADDRESS = process.env.ADDRESS || "127.0.0.1";
 app.listen({
   port: PORT,
+  host: ADDRESS,
 });
 
 app.get("/api/fake-users", (req, res) => {
